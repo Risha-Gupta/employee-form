@@ -15,7 +15,7 @@ private String employeeName;
 private LocalDate joiningDate;
 private String gender;
 private String department;
-private boolean isFullTime;
+private boolean FullTime;
 
 @PrePersist
 public void persist(){
@@ -65,11 +65,11 @@ public void setDepartment(String department){
     this.department =department;
 }
 
-public boolean getIsFullTime(){
-    return isFullTime;
+public boolean isFullTime(){
+    return FullTime;
 }
-public void setIsFullTime(boolean isFullTime){
-    this.isFullTime= isFullTime;
+public void setFullTime(boolean FullTime){
+    this.FullTime= FullTime;
 }
 
 }
