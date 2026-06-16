@@ -1,4 +1,4 @@
-package com.example.employeeform;
+package com.pinnaxis.employeeform.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -13,12 +13,12 @@ private Long id;
 private LocalDateTime submissionTime;
 private String employeeName;
 private LocalDate joiningDate;
-private String email;
+private String gender;
 private String department;
 private boolean isFullTime;
 
 @PrePersist
-public void perist(){
+public void persist(){
     this.submissionTime= LocalDateTime.now();
 }
 
@@ -30,7 +30,7 @@ public void setId(Long id){
     this.id = id;
 }
 
-public Long getSubmissionTime(){
+public LocalDateTime getSubmissionTime(){
     return submissionTime;
 }
 public void setSubmissionTime(LocalDateTime submissionTime){
@@ -51,23 +51,25 @@ public void setJoiningDate(LocalDate joiningDate){
     this.joiningDate=joiningDate;
 }
 
-public String getEmail(){
-    return email;
+public String getGender(){
+    return gender;
 }
-public void setEmail(String Email){
-    this.email = email;
+public void setGender(String gender){
+    this.gender =gender;
 }
 
 public String getDepartment(){
-    return department
+    return department;
 }
-public void setDepartment(){
+public void setDepartment(String department){
     this.department =department;
 }
 
 public boolean getIsFullTime(){
     return isFullTime;
 }
-public void setIsFullTime()
+public void setIsFullTime(boolean isFullTime){
+    this.isFullTime= isFullTime;
+}
 
 }
