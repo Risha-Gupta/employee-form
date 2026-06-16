@@ -10,20 +10,21 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController{
 @Autowired
 private EmployeeService employeeService; 
+@GetMapping("/")
 public String showForm(Model model){ //loads form page
     model.addAttribute("employee",new EmployeeForm()); 
-    return "form";
+    return "submissionForm";
 }
 
 @PostMapping("/submit")
 public String submitForm(@ModelAttribute EmployeeForm employee){ //handles form submission
     employeeService.saveEmployee(employee); 
-    return "redirect:/results"; 
+    return "redirect:/resultsPage"; 
 } 
 
 @GetMapping("/results") 
 public String showResults(Model model){ //displays form results page
     model.addAttribute("employees",employeeService.getEmployees()); 
-    return "results"; 
+    return "resultsPage"; 
 }
 }
