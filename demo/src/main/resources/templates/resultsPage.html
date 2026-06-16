@@ -23,15 +23,15 @@
                         <td colspan="6" class="empty">No employees registered yet.</td>
                     </tr>
                     <tr th:each="emp : ${employees}">
-                        <td th:text="${emp.name}"></td>
-                        <td th:text="${emp.email}"></td>
+                        <td th:text="${emp.employeeName}"></td>
+                        <td th:text="${emp.gender}"></td>
                         <td th:text="${emp.department}"></td>
                         <td th:text="${emp.joiningDate}"></td>
                         <td>
                             <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
                             <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
                         </td>
-                        <td th:text="${emp.submittedAt}"></td>
+                        <td th:text="${emp.submissionTime}"></td>
                     </tr>
                 </tbody>
             </table>
