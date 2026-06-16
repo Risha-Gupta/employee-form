@@ -13,20 +13,23 @@
 
             <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" th:field="*{name}" placeholder="e.g. John Smith" required/>
+                <input type="text" th:field="*{name}" placeholder="e.g. Risha Gupta" required/>
             </div>
 
             <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" th:field="*{email}" placeholder="e.g. john@company.com" required/>
+                <label>Gender</label>
+                <input type="radio" th:field="*{gender}" value="Male" id="male"/>
+                <label for="male">Male</label>
+                <input type="radio" th:field="*{gender}" value="Female" id="female"/>
+                <label for="female">Female</label>
             </div>
 
             <div class="form-group">
                 <label>Department</label>
                 <select th:field="*{department}">
-                    <option value="">-- Select Department --</option>
-                    <option value="HR">HR</option>
-                    <option value="IT">IT</option>
+                    <option value="">Select Department</option>
+                    <option value="HR">HR (Human Reousrces)</option>
+                    <option value="IT">IT (Information Technology)</option>
                     <option value="Finance">Finance</option>
                 </select>
             </div>
@@ -50,10 +53,10 @@
 
         </form>
 
-        <a href="/results" class="view-results">View Submitted Results →</a>
+        <a href="/results" class="view-results">View Submitted Results</a>
 
     </div>
 
-    <script th:src="@{/js/script.js}"></script> <!-- links external JS -->
+    <script th:src="@{/js/formScript.js}"></script>
 </body>
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Records</title>
+    <link rel="stylesheet" th:href="@{/css/resultStyle.css}"/> 
+<body>
+    <div class="container">
+        <h1>Employee Records</h1>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Joining Date</th>
+                        <th>Full Time</th>
+                        <th>Submitted At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(employees)}">
+                        <td colspan="6" class="empty">No employees registered yet.</td>
+                    </tr>
+                    <tr th:each="emp : ${employees}">
+                        <td th:text="${emp.name}"></td>
+                        <td th:text="${emp.email}"></td>
+                        <td th:text="${emp.department}"></td>
+                        <td th:text="${emp.joiningDate}"></td>
+                        <td>
+                            <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
+                            <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
+                        </td>
+                        <td th:text="${emp.submittedAt}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a href="/" class="btn-back">Back to Form</a>
+
+    </div>
+</body>
+</html>
