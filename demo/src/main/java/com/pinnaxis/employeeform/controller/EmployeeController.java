@@ -22,7 +22,7 @@ public String submitForm(@ModelAttribute EmployeeForm employee){ //handles form 
     return "redirect:/resultsPage"; 
 } 
 
-@GetMapping("/results") 
+@GetMapping("/resultsPage") 
 public String showResults(Model model){ //displays form results page
     model.addAttribute("employees",employeeService.getEmployees()); 
     return "resultsPage"; 
