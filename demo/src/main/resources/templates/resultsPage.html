@@ -10,12 +10,13 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Employee ID</th>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th>Gender</th>
                         <th>Department</th>
                         <th>Joining Date</th>
                         <th>Full Time</th>
-                        <th>Submitted At</th>
+                        <th>Submission Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                         <td colspan="6" class="empty">No employees registered yet.</td>
                     </tr>
                     <tr th:each="emp : ${employees}">
+                        <td th:text="${emp.id}"></td>
                         <td th:text="${emp.employeeName}"></td>
                         <td th:text="${emp.gender}"></td>
                         <td th:text="${emp.department}"></td>
