@@ -20,13 +20,13 @@
                 <label>Gender</label>
                 <div class="radio-group">
                     <label for="male"><input type="radio" th:field="*{gender}" value="Male" id="male"/> Male</label>
-                    <label for="female"><input type="radio" th:field="*{gender}" value="Female" id="female"/> Female</label>
+                    <label for="female"><input type="radio" th:field="*{gender}" value="Female" id="female" required/> Female</label>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Department</label>
-                <select th:field="*{department}">
+                <select th:field="*{department}" required>
                     <option value="">Select Department</option>
                     <option value="HR">HR (Human Reousrces)</option>
                     <option value="IT">IT (Information Technology)</option>
