@@ -1,7 +1,7 @@
 function confirmSubmit(){
     var result= confirm("Are you sure you want to submit?");
     if (result){
-        document.getElementById("employeeForm").submit(); 
+        document.getElementById("employeeForm").requestSubmit(); 
     }
 }
 
