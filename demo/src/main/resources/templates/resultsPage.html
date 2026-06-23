@@ -7,43 +7,51 @@
 <body>
     <div class="container">
         <h1>Employee Records</h1>
-        <div class="table-card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Employee ID</th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Department</th>
-                        <th>Joining Date</th>
-                        <th>Full Time</th>
-                        <th>Submission Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:if="${#lists.isEmpty(employees)}">
-                        <td colspan="8" class="empty">No employees registered yet.</td>
-                    </tr>
-                    <tr th:each="emp : ${employees}">
-                        <td>
-                            <button class="btn-delete" onclick="confirmDelete([[${emp.id}]])">Delete</button>
-                        </td>
-                        <td th:text="${emp.id}"></td>
-                        <td th:text="${emp.employeeName}"></td>
-                        <td th:text="${emp.gender}"></td>
-                        <td th:text="${emp.department}"></td>
-                        <td th:text="${emp.joiningDate}"></td>
-                        <td>
-                            <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
-                            <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
-                        </td>
-                        <td th:text="${emp.formattedSubmissionTime}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
+        <!-- Bulk Delete Form: checkboxes are <input name="ids"> inside this form -->
+        <form id="bulkDeleteForm" action="/delete-selected" method="post">
+            <div class="table-action-bar">
+                <button type="button" id="bulkDeleteBtn" class="btn-delete-selected"
+                        onclick="openBulkDeleteModal()" disabled>Delete Selected</button>
+            </div>
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll" title="Select All"/></th>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Department</th>
+                            <th>Joining Date</th>
+                            <th>Full Time</th>
+                            <th>Submission Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${#lists.isEmpty(employees)}">
+                            <td colspan="8" class="empty">No employees registered yet.</td>
+                        </tr>
+                        <tr th:each="emp : ${employees}">
+                            <td><input type="checkbox" name="ids"
+                                       th:value="${emp.id}" class="row-checkbox"/></td>
+                            <td th:text="${emp.id}"></td>
+                            <td th:text="${emp.employeeName}"></td>
+                            <td th:text="${emp.gender}"></td>
+                            <td th:text="${emp.department}"></td>
+                            <td th:text="${emp.joiningDate}"></td>
+                            <td>
+                                <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
+                                <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
+                            </td>
+                            <td th:text="${emp.formattedSubmissionTime}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+        <!-- Even IDs table (no changes needed here) -->
         <div class="table-card">
             <h2>Employees with Even IDs</h2>
             <table>
@@ -81,6 +89,7 @@
         <a href="/" class="btn-back">Back to Form</a>
     </div>
 
+    <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-box">
             <p class="modal-msg">Are you sure you want to delete the selected records?</p>

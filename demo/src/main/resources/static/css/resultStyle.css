@@ -136,3 +136,46 @@ tbody td{padding:14px 18px;font-size:14px;color:#374151;}
     border-radius:5px;
     cursor:pointer;
 }
+
+/* Checkbox column header and cell alignment */
+thead th:first-child { width: 42px; text-align: center; }
+tbody td:first-child  { text-align: center; }
+
+input[type="checkbox"] {
+    width: 16px; height: 16px;
+    cursor: pointer;
+    accent-color: #4f46e5;
+}
+
+/* Highlighted row when selected */
+tbody tr.selected-row { background: #ede9fe; }
+
+/* Bar above the table holding the Delete Selected button */
+.table-action-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.btn-delete-selected {
+    padding: 9px 22px;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.15s, opacity 0.15s;
+}
+
+.btn-delete-selected:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn-delete-selected:not(:disabled):hover { background: #c0392b; }
+
+/* Hover on modal buttons */
+.btn-confirm-yes:hover { background: #c0392b; }
+.btn-confirm-no:hover  { background: #888; }
