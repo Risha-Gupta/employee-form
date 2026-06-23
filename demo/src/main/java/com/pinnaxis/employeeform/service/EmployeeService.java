@@ -21,4 +21,20 @@ public class EmployeeService{
     public List<EmployeeForm> getEmployees(){
         return employeeRepository.findAllByOrderBySubmissionTimeAsc();
     }
+
+    /*public void saveEmployee(EmployeeForm employee){
+    Long reusedId = employeeRepository.findLowestUnusedId();
+    if(reusedId != null){
+        employee.setId(reusedId);
+    }
+    employeeRepository.save(employee);
+}*/
+
+public void deleteEmployee(Long id){
+    employeeRepository.deleteById(id);
+}
+
+public List<EmployeeForm> getEvenIdEmployees(){
+    return employeeRepository.findEvenIdEmployees();
+}
 }

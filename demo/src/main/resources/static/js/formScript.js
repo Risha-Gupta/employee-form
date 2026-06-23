@@ -26,13 +26,16 @@ function confirmDelete(id){
     document.getElementById("deleteModal").style.display="flex";
 }
 
-document.getElementById("confirmYes").addEventListener("click", function(){
-    if(pendingDeleteId!==null){
-        window.location.href="/delete/"+pendingDeleteId;
-    }
-    closeModal("deleteModal");
-    pendingDeleteId=null;
-});
+var confirmYesBtn=document.getElementById("confirmYes");
+if(confirmYesBtn){
+    confirmYesBtn.addEventListener("click", function(){
+        if(pendingDeleteId!==null){
+            window.location.href="/delete/"+pendingDeleteId;
+        }
+        closeModal("deleteModal");
+        pendingDeleteId=null;
+    });
+}
 
 $(document).ready(function(){
     function initSelect2(){

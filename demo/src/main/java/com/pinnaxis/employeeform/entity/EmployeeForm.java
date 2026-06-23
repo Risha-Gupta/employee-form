@@ -16,6 +16,9 @@ private LocalDateTime submissionTime;
 private String employeeName;
 private LocalDate joiningDate;
 private String gender;
+@ElementCollection
+@CollectionTable(name="employee_departments", joinColumns=@JoinColumn(name="employee_id"))
+@Column(name="department")
 private List<String> department;
 private boolean FullTime;
 

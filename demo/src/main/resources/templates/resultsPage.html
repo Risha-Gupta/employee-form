@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Employee Records</title>
-    <link rel="stylesheet" th:href="@{/css/resultStyle.css}"/> 
+    <link rel="stylesheet" th:href="@{/css/resultStyle.css}"/>
+</head>
 <body>
     <div class="container">
         <h1>Employee Records</h1>
@@ -21,9 +22,12 @@
                 </thead>
                 <tbody>
                     <tr th:if="${#lists.isEmpty(employees)}">
-                        <td colspan="6" class="empty">No employees registered yet.</td>
+                        <td colspan="7" class="empty">No employees registered yet.</td>
                     </tr>
                     <tr th:each="emp : ${employees}">
+                        <td>
+                            <button class="btn-delete" onclick="confirmDelete([[${emp.id}]])">Delete</button>
+                        </td>
                         <td th:text="${emp.id}"></td>
                         <td th:text="${emp.employeeName}"></td>
                         <td th:text="${emp.gender}"></td>
@@ -44,7 +48,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Select</th>
                         <th>Employee ID</th>
                         <th>Name</th>
                         <th>Gender</th>
@@ -76,12 +79,13 @@
     
         <a href="/" class="btn-back">Back to Form</a>
         </div>
-        <div id="deleteModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;">
-        <div style="background:#fff;padding:30px;border-radius:10px;text-align:center;min-width:320px;">
-            <p style="font-size:16px;margin-bottom:20px;">Are you sure you want to delete the selected records?</p>
-            <button id="confirmYes" style="margin-right:10px;padding:8px 24px;background:#e74c3c;color:#fff;border:none;border-radius:5px;cursor:pointer;">Yes</button>
-            <button onclick="closeModal()" style="padding:8px 24px;background:#aaa;color:#fff;border:none;border-radius:5px;cursor:pointer;">No</button>
+
+        <div id="deleteModal" class="modal-overlay">
+            <div class="modal-box">
+                <p class="modal-msg">Are you sure you want to delete the selected records?</p>
+                <button id="confirmYes" class="btn-confirm-yes">Yes</button>
+                <button onclick="closeModal('deleteModal')" class="btn-confirm-no">No</button>
+            </div>
         </div>
-    </div>
 </body>
 </html>
