@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-</head>
+    </head>
 <body class="form-page">
 
     <div class="card">
@@ -29,13 +29,17 @@
             </div>
 
             <div class="form-group">
-                <label for="department">Department</label>
-                <div class="dept-wrapper">
-                    <select id="department" name="department" multiple="multiple" style="width:100%" required></select>
-                    <button type="button" id="refreshDept" title="Refresh">Refresh</button>
-                </div>
-                <span id="deptError" class="error-msg">Please select a valid department.</span>
-            </div>
+    <label>Department</label>
+    <select id="department" name="department" multiple="multiple" style="width:100%" required>
+        <option value="HR">HR (Human Resources)</option>
+        <option value="IT">IT (Information Technology)</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Sales">Sales</option>
+        <option value="Design">Design</option>
+        <option value="Support">Support</option>
+    </select>
+</div>
 
             <div class="form-group">
                 <label>Joining Date</label>

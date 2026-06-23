@@ -143,6 +143,10 @@ input:focus, select:focus{
     z-index:1000;
 }
 
+.modal-overlay.active{
+    display:flex;
+}
+
 .modal-box{
     background: #ffffff;
     padding: 32px;
@@ -196,10 +200,14 @@ input:focus, select:focus{
 }
 
 .dept-wrapper{
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    width: 100%;
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+    width:100%;
+}
+
+.dept-wrapper .select2-container{
+    flex:1;
 }
 
 .dept-wrapper select{
@@ -229,4 +237,11 @@ select:not(.select2-hidden-accessible){
     background:#f9fafb;
     transition:border-color 0.2s, box-shadow 0.2s;
     outline:none;
+}
+
+input:focus,
+select:not(.select2-hidden-accessible):focus{
+    border-color:#4f46e5;
+    box-shadow:0 0 0 3px rgba(79,70,229,0.15);
+    background:#fff;
 }

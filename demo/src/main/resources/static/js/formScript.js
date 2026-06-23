@@ -1,9 +1,9 @@
 function confirmSubmit(){
-    document.getElementById("submitModal").style.display="flex";
+    document.getElementById("submitModal").classList.add("active");
 }
 
 function confirmClear(){
-    document.getElementById("clearModal").style.display="flex";
+    document.getElementById("clearModal").classList.add("active");
 }
 
 function doSubmit(){
@@ -12,52 +12,55 @@ function doSubmit(){
 
 function doClear(){
     document.getElementById("employeeForm").reset();
+    if(typeof $ !== 'undefined' && $("#department").data('select2')){
+        $("#department").val(null).trigger('change');
+    }
     closeModal("clearModal");
 }
 
 function closeModal(id){
-    document.getElementById(id).style.display="none";
+    document.getElementById(id).classList.remove("active");
 }
 
-var pendingDeleteId=null;
+var pendingDeleteId = null;
 
 function confirmDelete(id){
-    pendingDeleteId=id;
-    document.getElementById("deleteModal").style.display="flex";
+    pendingDeleteId = id;
+    document.getElementById("deleteModal").classList.add("active");
 }
 
-var confirmYesBtn=document.getElementById("confirmYes");
+var confirmYesBtn = document.getElementById("confirmYes");
 if(confirmYesBtn){
     confirmYesBtn.addEventListener("click", function(){
-        if(pendingDeleteId!==null){
-            window.location.href="/delete/"+pendingDeleteId;
+        if(pendingDeleteId !== null){
+            window.location.href = "/delete/" + pendingDeleteId;
         }
         closeModal("deleteModal");
-        pendingDeleteId=null;
+        pendingDeleteId = null;
     });
 }
 
 $(document).ready(function(){
     function initSelect2(){
-    $("#department").select2({
-        placeholder: "Select Department",
-        allowClear: true,
-        minimumInputLength: 0,
-        ajax: {
-            url: "/departments",
-            dataType: "json",
-            delay: 250,
-            processResults: function(data){
-                return {
-                    results: data.map(function(d){
-                        return {id: d, text: d};
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-}
+        $("#department").select2({
+            placeholder: "Select Department",
+            allowClear: true,
+            minimumInputLength: 0,
+            ajax: {
+                url: "/departments",
+                dataType: "json",
+                delay: 250,
+                processResults: function(data){
+                    return {
+                        results: data.map(function(d){
+                            return {id: d, text: d};
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    }
 
     initSelect2();
 
@@ -69,8 +72,8 @@ $(document).ready(function(){
     });
 
     $("#employeeForm").on("submit", function(e){
-        var val=$("#department").val();
-        if(!val || val.length===0){
+        var val = $("#department").val();
+        if(!val || val.length === 0){
             e.preventDefault();
             $("#deptError").show();
         } else {
