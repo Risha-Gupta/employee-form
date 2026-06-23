@@ -15,16 +15,20 @@ function confirmClear(){
 }
 
 function doSubmit(){
+    closeModal("submitModal");
+
     if (typeof $ !== 'undefined' && $("#department").data("select2")) {
         var selected = $("#department").val();
+        $("#department").select2("destroy");
         $("#department").empty();
         if (selected && selected.length > 0) {
-            selected.forEach(function(val) {
-                $("#department").append(new Option(val, val, true, true));
+            selected.forEach(function(v) {
+                var opt = new Option(v, v, true, true);
+                $("#department").append(opt);
             });
         }
     }
-    document.getElementById("employeeForm").requestSubmit();
+    document.getElementById("employeeForm").submit();
 }
 
 function doClear(){
