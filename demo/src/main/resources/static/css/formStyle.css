@@ -133,3 +133,85 @@ input:focus, select:focus{
 }
 
 .view-results:hover{text-decoration:underline;}
+.modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box{
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
+
+.modal-message{
+    font-size: 16px;
+    color: #1a1a2e;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.modal-actions{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-btn{
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.modal-btn-confirm{
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.modal-btn-confirm:hover{ 
+    background: #4338ca; 
+}
+
+.modal-btn-cancel{
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.modal-btn-cancel:hover{ 
+    background: #f3f4f6;
+}
+
+.dept-wrapper{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+
+.dept-wrapper select{
+    width: 100%;
+}
+
+#refreshDept{
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.error-msg{
+    color: red;
+    display: none;
+}

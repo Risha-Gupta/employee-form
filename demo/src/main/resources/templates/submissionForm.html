@@ -2,9 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Employee Registration</title>
-    <link rel="stylesheet" th:href="@{/css/formStyle.css}"/> 
+    <link rel="stylesheet" th:href="@{/css/formStyle.css}"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body class="form-page">
+
     <div class="card">
         <h1>Employee Registration</h1>
         <p class="subtitle">Fill in the details below to register an employee.</p>
@@ -26,11 +30,14 @@
 
             <div class="form-group">
                 <label>Department</label>
-                <select th:field="*{department}" required>
-                    <option value="">Select Department</option>
-                    <option value="HR">HR (Human Reousrces)</option>
+                <select id="department" name="department" multiple="multiple" style="width:100%" required>
+                    <option value="HR">HR (Human Resources)</option>
                     <option value="IT">IT (Information Technology)</option>
                     <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Design">Design</option>
+                    <option value="Support">Support</option>
                 </select>
             </div>
 
@@ -54,9 +61,29 @@
         </form>
 
         <a href="/resultsPage" class="view-results">View Submitted Results</a>
+    </div>
 
+    <div id="submitModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <p class="modal-message">Are you sure you want to submit the form?</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-confirm" onclick="doSubmit()">Yes, Submit</button>
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('submitModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="clearModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <p class="modal-message">Are you sure you want to clear all form data?</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-confirm" onclick="doClear()">Yes, Clear</button>
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('clearModal')">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <script th:src="@{/js/formScript.js}"></script>
+
 </body>
 </html>

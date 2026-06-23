@@ -33,14 +33,55 @@
                             <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
                             <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
                         </td>
-                        <td th:text="${emp.submissionTime}"></td>
+                        <td th:text="${emp.formattedSubmissionTime}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
+        <div class="table-card">
+            <h2>Employees with Even IDs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Joining Date</th>
+                        <th>Full Time</th>
+                        <th>Submission Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(evenEmployees)}">
+                        <td colspan="7" class="empty">No employees with even IDs.</td>
+                    </tr>
+                    <tr th:each="emp : ${evenEmployees}">
+                        <td th:text="${emp.id}"></td>
+                        <td th:text="${emp.employeeName}"></td>
+                        <td th:text="${emp.gender}"></td>
+                        <td th:text="${emp.department}"></td>
+                        <td th:text="${emp.joiningDate}"></td>
+                        <td>
+                            <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
+                            <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
+                        </td>
+                        <td th:text="${emp.formattedSubmissionTime}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
         <a href="/" class="btn-back">Back to Form</a>
-
+        </div>
+        <div id="deleteModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;">
+        <div style="background:#fff;padding:30px;border-radius:10px;text-align:center;min-width:320px;">
+            <p style="font-size:16px;margin-bottom:20px;">Are you sure you want to delete the selected records?</p>
+            <button id="confirmYes" style="margin-right:10px;padding:8px 24px;background:#e74c3c;color:#fff;border:none;border-radius:5px;cursor:pointer;">Yes</button>
+            <button onclick="closeModal()" style="padding:8px 24px;background:#aaa;color:#fff;border:none;border-radius:5px;cursor:pointer;">No</button>
+        </div>
     </div>
 </body>
 </html>

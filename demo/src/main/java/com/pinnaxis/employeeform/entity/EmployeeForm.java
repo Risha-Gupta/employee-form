@@ -3,6 +3,8 @@ package com.pinnaxis.employeeform.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Entity
 @Table(name="employee_form")
@@ -14,7 +16,7 @@ private LocalDateTime submissionTime;
 private String employeeName;
 private LocalDate joiningDate;
 private String gender;
-private String department;
+private List<String> department;
 private boolean FullTime;
 
 @PrePersist
@@ -58,13 +60,6 @@ public void setGender(String gender){
     this.gender =gender;
 }
 
-public String getDepartment(){
-    return department;
-}
-public void setDepartment(String department){
-    this.department =department;
-}
-
 public boolean isFullTime(){
     return FullTime;
 }
@@ -72,4 +67,15 @@ public void setFullTime(boolean FullTime){
     this.FullTime= FullTime;
 }
 
+public String getFormattedSubmissionTime() {
+if (submissionTime == null) return "";
+return submissionTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"));
+}
+
+public List<String> getDepartment(){
+    return department;
+}
+public void setDepartment(List<String> department){
+    this.department = department;
+}
 }
