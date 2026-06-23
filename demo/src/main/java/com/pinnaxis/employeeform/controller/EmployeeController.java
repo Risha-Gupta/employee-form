@@ -40,7 +40,40 @@ public String deleteEmployee(@PathVariable Long id){
 
 @GetMapping("/departments")
 @ResponseBody
-public List<String> getDepartments(){
-    return Arrays.asList("HR","IT","Finance","Marketing","Sales","Design","Support");
+public List<String> getDepartments(@RequestParam(value = "q", required = false, defaultValue = "") String query) {
+    List<String> allDepartments = Arrays.asList(
+        "HR (Human Resources)",
+        "IT (Information Technology)",
+        "Finance",
+        "Marketing",
+        "Sales",
+        "Design",
+        "Customer Support",
+        "Operations",
+        "Legal",
+        "Procurement",
+        "Research & Development",
+        "Product Management",
+        "Data Analytics",
+        "Cybersecurity",
+        "DevOps",
+        "Quality Assurance",
+        "Business Development",
+        "Administration",
+        "Logistics",
+        "Training & Development",
+        "Public Relations",
+        "Compliance",
+        "Accounts Payable",
+        "Accounts Receivable",
+        "Internal Audit"
+    );
+    if (query.isEmpty()) {
+        return allDepartments;
+    }
+    String lowerQuery = query.toLowerCase();
+    return allDepartments.stream()
+        .filter(d -> d.toLowerCase().contains(lowerQuery))
+        .collect(java.util.stream.Collectors.toList());
 }
 }

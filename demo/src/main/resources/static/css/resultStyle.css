@@ -109,11 +109,13 @@ tbody td{padding:14px 18px;font-size:14px;color:#374151;}
     border-radius:10px;
     text-align:center;
     min-width:320px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
 }
 
 .modal-msg{
     font-size:16px;
     margin-bottom:20px;
+    color:#1a1a2e;
 }
 
 .btn-confirm-yes{

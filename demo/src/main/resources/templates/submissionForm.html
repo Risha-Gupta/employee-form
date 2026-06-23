@@ -29,21 +29,17 @@
             </div>
 
             <div class="form-group">
-    <label>Department</label>
-    <select id="department" name="department" multiple="multiple" style="width:100%" required>
-        <option value="HR">HR (Human Resources)</option>
-        <option value="IT">IT (Information Technology)</option>
-        <option value="Finance">Finance</option>
-        <option value="Marketing">Marketing</option>
-        <option value="Sales">Sales</option>
-        <option value="Design">Design</option>
-        <option value="Support">Support</option>
-    </select>
-</div>
+                <label>Department</label>
+                <div class="dept-wrapper">
+                    <select id="department" name="department" multiple="multiple" style="width:100%" required>
+                    </select>
+                </div>
+                <span id="deptError" class="error-msg">Please select at least one department.</span>
+            </div>
 
             <div class="form-group">
                 <label>Joining Date</label>
-                <input type="date" th:field="*{joiningDate}" required/>
+                <input type="date" th:field="*{joiningDate}" required min="2025-06-19" max="2026-06-23"/>
             </div>
 
             <div class="form-group">

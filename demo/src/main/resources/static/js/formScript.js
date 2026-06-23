@@ -40,40 +40,57 @@ if(confirmYesBtn){
     });
 }
 
-$(document).ready(function(){
-    function initSelect2(){
+$(document).ready(function () {
+
+    function initSelect2() {
         $("#department").select2({
-            placeholder: "Select Department",
+            placeholder: "Search and select department(s)...",
             allowClear: true,
             minimumInputLength: 0,
             ajax: {
                 url: "/departments",
                 dataType: "json",
-                delay: 250,
-                processResults: function(data){
+                delay: 200,
+                data: function (params) {
+                    return { q: params.term || "" };
+                },
+                processResults: function (data) {
                     return {
-                        results: data.map(function(d){
-                            return {id: d, text: d};
+                        results: data.map(function (d) {
+                            return { id: d, text: d };
                         })
                     };
                 },
                 cache: true
             }
         });
+
+        // Auto-load all options when dropdown opens (so user sees list without typing)
+        $("#department").on("select2:open", function () {
+            var searchInput = document.querySelector(".select2-search__field");
+            if (searchInput) {
+                // Trigger an empty search to load initial results
+                $(this).data("select2").$dropdown
+                    .find(".select2-search__field")
+                    .trigger("input");
+            }
+        });
     }
 
     initSelect2();
 
-    $("#refreshDept").on("click", function(){
+    // Refresh button (if you keep #refreshDept button)
+    $("#refreshDept").on("click", function () {
         $("#department").val(null).trigger("change");
         $("#department").select2("destroy");
         $("#department").find("option").remove();
         initSelect2();
     });
 
-    $("#employeeForm").on("submit", function(e){
+    // Form submit validation
+    $("#employeeForm").on("submit", function (e) {
         var val = $("#department").val();
-        if(!val || val.length === 0){
+        if (!val || val.length === 0) {
             e.preventDefault();
             $("#deptError").show();
         } else {
