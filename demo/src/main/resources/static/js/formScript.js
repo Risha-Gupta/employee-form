@@ -43,37 +43,24 @@ if(confirmYesBtn){
 $(document).ready(function () {
 
     function initSelect2() {
-        $("#department").select2({
-            placeholder: "Search and select department(s)...",
-            allowClear: true,
-            minimumInputLength: 0,
-            ajax: {
-                url: "/departments",
-                dataType: "json",
-                delay: 200,
-                data: function (params) {
-                    return { q: params.term || "" };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data.map(function (d) {
-                            return { id: d, text: d };
-                        })
-                    };
-                },
-                cache: false   // ← BUG 2 FIX: was true, prevents reload on reopen
-            }
+        var departments = [
+            "HR (Human Resources)", "IT (Information Technology)", "Finance",
+            "Marketing", "Sales", "Design", "Customer Support", "Operations",
+            "Legal", "Procurement", "Research & Development", "Product Management",
+            "Data Analytics", "Cybersecurity", "DevOps", "Quality Assurance",
+            "Business Development", "Administration", "Logistics",
+            "Training & Development", "Public Relations", "Compliance",
+            "Accounts Payable", "Accounts Receivable", "Internal Audit"
+        ];
+
+        departments.forEach(function(dept) {
+            var option = new Option(dept, dept, false, false);
+            $("#department").append(option);
         });
 
-        // BUG 1 FIX: use setTimeout so dropdown DOM is ready before triggering search
-        $("#department").on("select2:open", function () {
-            setTimeout(function () {
-                var searchField = document.querySelector(".select2-search__field");
-                if (searchField) {
-                    searchField.value = "";
-                    searchField.dispatchEvent(new Event("input"));
-                }
-            }, 0);
+        $("#department").select2({
+            placeholder: "Search and select department(s)...",
+            allowClear: true
         });
     }
 
