@@ -83,4 +83,9 @@ public class EmployeeForm {
     public void setDepartment(List<String> department){
         this.department = department;
     }
+
+    public String getDepartmentDisplay() {
+    if (department == null || department.isEmpty()) return "";
+    return String.join(", ", department);
+}
 }

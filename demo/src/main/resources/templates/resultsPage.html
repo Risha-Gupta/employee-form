@@ -33,7 +33,7 @@
                             <td th:text="${emp.id}"></td>
                             <td th:text="${emp.employeeName}"></td>
                             <td th:text="${emp.gender}"></td>
-                            <td th:text="${emp.department != null} ? ${#lists.join(emp.department, ', ')} : ''"></td>
+                            <td th:text="${emp.departmentDisplay}"></td>
                             <td th:text="${emp.joiningDate}"></td>
                             <td>
                                 <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
@@ -75,7 +75,7 @@
                         <td th:text="${emp.id}"></td>
                         <td th:text="${emp.employeeName}"></td>
                         <td th:text="${emp.gender}"></td>
-                        <td th:text="${emp.department != null} ? ${#lists.join(emp.department, ', ')} : ''"></td>
+                        <td th:text="${emp.departmentDisplay}"></td>
                         <td th:text="${emp.joiningDate}"></td>
                         <td>
                             <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
