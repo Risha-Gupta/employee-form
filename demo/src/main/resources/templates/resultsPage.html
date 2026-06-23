@@ -8,12 +8,7 @@
     <div class="container">
         <h1>Employee Records</h1>
 
-        <!-- Bulk Delete Form: checkboxes are <input name="ids"> inside this form -->
         <form id="bulkDeleteForm" action="/delete-selected" method="post">
-            <div class="table-action-bar">
-                <button type="button" id="bulkDeleteBtn" class="btn-delete-selected"
-                        onclick="openBulkDeleteModal()" disabled>Delete Selected</button>
-            </div>
             <div class="table-card">
                 <table>
                     <thead>
@@ -51,7 +46,13 @@
             </div>
         </form>
 
-        <!-- Even IDs table (no changes needed here) -->
+        <div class="table-action-bar">
+            <button type="button" id="bulkDeleteBtn" class="btn-delete-selected"
+                    onclick="openBulkDeleteModal()" disabled>
+                &#128465; Delete
+            </button>
+        </div>
+
         <div class="table-card">
             <h2>Employees with Even IDs</h2>
             <table>
@@ -89,7 +90,6 @@
         <a href="/" class="btn-back">Back to Form</a>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-box">
             <p class="modal-msg">Are you sure you want to delete the selected records?</p>
