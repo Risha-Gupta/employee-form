@@ -15,6 +15,15 @@ function confirmClear(){
 }
 
 function doSubmit(){
+    if (typeof $ !== 'undefined' && $("#department").data("select2")) {
+        var selected = $("#department").val();
+        $("#department").empty();
+        if (selected && selected.length > 0) {
+            selected.forEach(function(val) {
+                $("#department").append(new Option(val, val, true, true));
+            });
+        }
+    }
     document.getElementById("employeeForm").requestSubmit();
 }
 
