@@ -9,76 +9,78 @@ import java.util.List;
 @Entity
 @Table(name="employee_form")
 public class EmployeeForm {
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Long id;
-private LocalDateTime submissionTime;
-private String employeeName;
-private LocalDate joiningDate;
-private String gender;
-@ElementCollection
-@CollectionTable(name="employee_departments", joinColumns=@JoinColumn(name="employee_id"))
-@Column(name="department")
-private List<String> department;
-private boolean FullTime;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private LocalDateTime submissionTime;
+    private String employeeName;
+    private LocalDate joiningDate;
+    private String gender;
 
-@PrePersist
-public void persist(){
-    this.submissionTime= LocalDateTime.now();
-}
+    @ElementCollection
+    @CollectionTable(name="employee_departments", joinColumns=@JoinColumn(name="employee_id"))
+    @Column(name="department")
+    private List<String> department;
 
-//Getter and Setter functions
-public Long getId(){
-    return id;
-}
-public void setId(Long id){
-    this.id = id;
-}
+    private boolean FullTime;
 
-public LocalDateTime getSubmissionTime(){
-    return submissionTime;
-}
-public void setSubmissionTime(LocalDateTime submissionTime){
-    this.submissionTime = submissionTime;
-}
+    @PrePersist
+    public void persist(){
+        this.submissionTime= LocalDateTime.now();
+    }
 
-public String getEmployeeName(){
-    return employeeName;
-}
-public void setEmployeeName(String employeeName){
-    this.employeeName=employeeName;
-}
+    // Getter and Setter functions
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id = id;
+    }
 
-public LocalDate getJoiningDate(){
-    return joiningDate;
-}
-public void setJoiningDate(LocalDate joiningDate){
-    this.joiningDate=joiningDate;
-}
+    public LocalDateTime getSubmissionTime(){
+        return submissionTime;
+    }
+    public void setSubmissionTime(LocalDateTime submissionTime){
+        this.submissionTime = submissionTime;
+    }
 
-public String getGender(){
-    return gender;
-}
-public void setGender(String gender){
-    this.gender =gender;
-}
+    public String getEmployeeName(){
+        return employeeName;
+    }
+    public void setEmployeeName(String employeeName){
+        this.employeeName=employeeName;
+    }
 
-public boolean isFullTime(){
-    return FullTime;
-}
-public void setFullTime(boolean FullTime){
-    this.FullTime= FullTime;
-}
+    public LocalDate getJoiningDate(){
+        return joiningDate;
+    }
+    public void setJoiningDate(LocalDate joiningDate){
+        this.joiningDate=joiningDate;
+    }
 
-public String getFormattedSubmissionTime() {
-if (submissionTime == null) return "";
-return submissionTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"));
-}
+    public String getGender(){
+        return gender;
+    }
+    public void setGender(String gender){
+        this.gender =gender;
+    }
 
-public List<String> getDepartment(){
-    return department;
-}
-public void setDepartment(List<String> department){
-    this.department = department;
-}
+    public boolean isFullTime(){
+        return FullTime;
+    }
+    public void setFullTime(boolean FullTime){
+        this.FullTime= FullTime;
+    }
+
+    public String getFormattedSubmissionTime() {
+        if (submissionTime == null) return "";
+        return submissionTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"));
+    }
+
+    public List<String> getDepartment(){
+        return department;
+    }
+    public void setDepartment(List<String> department){
+        this.department = department;
+    }
 }
