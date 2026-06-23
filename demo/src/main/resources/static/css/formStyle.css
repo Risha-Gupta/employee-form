@@ -283,3 +283,6 @@ select:not(.select2-hidden-accessible):focus{
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: #4f46e5;
 }
+.dept-actions {
+    margin-top: 6px; /* or 4px if you want it even tighter */
+}

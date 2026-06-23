@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
+    const joiningDateInput = document.querySelector('input[type="date"]');
+    if (joiningDateInput) {
+        joiningDateInput.setAttribute('max', today);
+    }
+});
+
 function confirmSubmit(){
     document.getElementById("submitModal").classList.add("active");
 }
@@ -68,13 +76,19 @@ if(typeof $ !== 'undefined'){
     $(document).ready(function () {
 
         var departments = [
-            "HR (Human Resources)", "IT (Information Technology)", "Finance",
-            "Marketing", "Sales", "Design", "Customer Support", "Operations",
-            "Legal", "Procurement", "Research & Development", "Product Management",
-            "Data Analytics", "Cybersecurity", "DevOps", "Quality Assurance",
-            "Business Development", "Administration", "Logistics",
-            "Training & Development", "Public Relations", "Compliance",
-            "Accounts Payable", "Accounts Receivable", "Internal Audit"
+            "HR (Human Resources)", 
+            "IT (Information Technology)", 
+            "Finance",
+            "Marketing", 
+            "Sales", 
+            "Design", 
+            "Customer Support",
+            "Legal", 
+            "Research & Development", 
+            "Product Management",
+            "Data Analytics", 
+            "Cybersecurity", 
+            "Administration"
         ];
 
         var deptData = departments.map(function(d){ return { id: d, text: d }; });

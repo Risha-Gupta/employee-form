@@ -145,8 +145,13 @@ tbody td{padding:14px 18px;font-size:14px;color:#374151;}
     transition: 0.18s, transform 0.1s;
 }
 
-.btn-confirm-yes:hover { background: #c0392b; transform: translateY(-1px); }
-.btn-confirm-no:hover  { background: #e5e7eb; transform: translateY(-1px); }
+.btn-confirm-yes:hover { 
+    background: #c0392b; 
+}
+
+.btn-confirm-no:hover  { 
+    background: #e5e7eb;  
+}
 
 thead th:first-child { width: 42px; text-align: center; }
 tbody td:first-child  { text-align: center; }
@@ -195,7 +200,6 @@ tbody tr.selected-row { background: #ede9fe; }
 .btn-delete-selected:not(:disabled):hover {
     background: #c0392b;
     box-shadow: 0 4px 14px rgba(192,57,43,0.35);
-    transform: translateY(-1px);
 }
 
 .btn-delete-selected:not(:disabled):active {

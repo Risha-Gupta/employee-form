@@ -36,12 +36,10 @@
                 <label>Department</label>
                 <div class="dept-wrapper">
                     <select id="department" name="department" multiple="multiple" style="width:100%" required>
-                        <!-- Placeholder option (empty value) -->
                         <option value="">Select Department</option>
                     </select>
                 </div>
 
-                <!-- Refresh button for department dropdown -->
                 <div class="dept-actions">
                     <button type="button" id="refreshDept" class="btn-clear">Refresh Departments</button>
                 </div>
@@ -51,11 +49,7 @@
 
             <div class="form-group">
                 <label>Joining Date</label>
-                <input type="date"
-                       th:field="*{joiningDate}"
-                       required
-                       min="2025-06-19"
-                       max="2026-06-23"/>
+                <input type="date" th:field="*{joiningDate}" required min="2025-06-19"/>
             </div>
 
             <div class="form-group">
@@ -86,7 +80,6 @@
         </div>
     </div>
 
-    <!-- Clear confirmation modal -->
     <div id="clearModal" class="modal-overlay">
         <div class="modal-box">
             <p class="modal-message">Are you sure you want to clear all form data?</p>
