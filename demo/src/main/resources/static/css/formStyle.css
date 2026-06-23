@@ -59,7 +59,7 @@ select:not(.select2-hidden-accessible) {
     outline:none;
 }
 
-input:focus, select:focus{
+input:focus, select:not(.select2-hidden-accessible):focus{
     border-color:#4f46e5;
     box-shadow:0 0 0 3px rgba(79,70,229,0.15);
     background:#fff;

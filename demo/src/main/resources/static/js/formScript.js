@@ -61,25 +61,24 @@ $(document).ready(function () {
                         })
                     };
                 },
-                cache: true
+                cache: false   // ← BUG 2 FIX: was true, prevents reload on reopen
             }
         });
 
-        // Auto-load all options when dropdown opens (so user sees list without typing)
+        // BUG 1 FIX: use setTimeout so dropdown DOM is ready before triggering search
         $("#department").on("select2:open", function () {
-            var searchInput = document.querySelector(".select2-search__field");
-            if (searchInput) {
-                // Trigger an empty search to load initial results
-                $(this).data("select2").$dropdown
-                    .find(".select2-search__field")
-                    .trigger("input");
-            }
+            setTimeout(function () {
+                var searchField = document.querySelector(".select2-search__field");
+                if (searchField) {
+                    searchField.value = "";
+                    searchField.dispatchEvent(new Event("input"));
+                }
+            }, 0);
         });
     }
 
     initSelect2();
 
-    // Refresh button (if you keep #refreshDept button)
     $("#refreshDept").on("click", function () {
         $("#department").val(null).trigger("change");
         $("#department").select2("destroy");
@@ -87,7 +86,6 @@ $(document).ready(function () {
         initSelect2();
     });
 
-    // Form submit validation
     $("#employeeForm").on("submit", function (e) {
         var val = $("#department").val();
         if (!val || val.length === 0) {
