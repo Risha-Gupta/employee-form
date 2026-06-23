@@ -39,25 +39,25 @@ if(confirmYesBtn){
 
 $(document).ready(function(){
     function initSelect2(){
-        $("#department").select2({
-            placeholder: "Select Department",
-            allowClear: true,
-            minimumInputLength: 1,
-            ajax: {
-                url: "/departments",
-                dataType: "json",
-                delay: 250,
-                processResults: function(data){
-                    return {
-                        results: data.map(function(d){
-                            return {id: d, text: d};
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-    }
+    $("#department").select2({
+        placeholder: "Select Department",
+        allowClear: true,
+        minimumInputLength: 0,
+        ajax: {
+            url: "/departments",
+            dataType: "json",
+            delay: 250,
+            processResults: function(data){
+                return {
+                    results: data.map(function(d){
+                        return {id: d, text: d};
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+}
 
     initSelect2();
 

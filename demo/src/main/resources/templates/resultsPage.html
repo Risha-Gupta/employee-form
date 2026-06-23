@@ -11,6 +11,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Action</th>
                         <th>Employee ID</th>
                         <th>Name</th>
                         <th>Gender</th>
@@ -22,7 +23,7 @@
                 </thead>
                 <tbody>
                     <tr th:if="${#lists.isEmpty(employees)}">
-                        <td colspan="7" class="empty">No employees registered yet.</td>
+                        <td colspan="8" class="empty">No employees registered yet.</td>
                     </tr>
                     <tr th:each="emp : ${employees}">
                         <td>
@@ -76,16 +77,18 @@
                 </tbody>
             </table>
         </div>
-    
-        <a href="/" class="btn-back">Back to Form</a>
-        </div>
 
-        <div id="deleteModal" class="modal-overlay">
-            <div class="modal-box">
-                <p class="modal-msg">Are you sure you want to delete the selected records?</p>
-                <button id="confirmYes" class="btn-confirm-yes">Yes</button>
-                <button onclick="closeModal('deleteModal')" class="btn-confirm-no">No</button>
-            </div>
+        <a href="/" class="btn-back">Back to Form</a>
+    </div>
+
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal-box">
+            <p class="modal-msg">Are you sure you want to delete the selected records?</p>
+            <button id="confirmYes" class="btn-confirm-yes">Yes</button>
+            <button onclick="closeModal('deleteModal')" class="btn-confirm-no">No</button>
         </div>
+    </div>
+
+    <script th:src="@{/js/formScript.js}"></script>
 </body>
 </html>
