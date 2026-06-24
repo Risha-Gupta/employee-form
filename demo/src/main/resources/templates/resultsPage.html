@@ -34,7 +34,7 @@
                             <td th:text="${emp.employeeName}"></td>
                             <td th:text="${emp.gender}"></td>
                             <td th:text="${emp.departmentDisplay}"></td>
-                            <td th:text="${emp.joiningDate}"></td>
+                            <td th:text="${#temporals.format(emp.joiningDate, 'dd MMM yyyy')}"></td>
                             <td>
                                 <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
                                 <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
@@ -76,7 +76,7 @@
                         <td th:text="${emp.employeeName}"></td>
                         <td th:text="${emp.gender}"></td>
                         <td th:text="${emp.departmentDisplay}"></td>
-                        <td th:text="${emp.joiningDate}"></td>
+                        <td th:text="${#temporals.format(emp.joiningDate, 'dd MMM yyyy')}"></td>
                         <td>
                             <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
                             <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
