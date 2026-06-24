@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="employee_form")
-public class EmployeeForm {
+public class EmployeeForm{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -26,22 +26,21 @@ public class EmployeeForm {
 
     @PrePersist
     public void persist(){
-        this.submissionTime= LocalDateTime.now();
+        this.submissionTime=LocalDateTime.now();
     }
 
-    // Getter and Setter functions
     public Long getId(){
         return id;
     }
     public void setId(Long id){
-        this.id = id;
+        this.id=id;
     }
 
     public LocalDateTime getSubmissionTime(){
         return submissionTime;
     }
     public void setSubmissionTime(LocalDateTime submissionTime){
-        this.submissionTime = submissionTime;
+        this.submissionTime=submissionTime;
     }
 
     public String getEmployeeName(){
@@ -62,18 +61,18 @@ public class EmployeeForm {
         return gender;
     }
     public void setGender(String gender){
-        this.gender =gender;
+        this.gender=gender;
     }
 
     public boolean isFullTime(){
         return FullTime;
     }
     public void setFullTime(boolean FullTime){
-        this.FullTime= FullTime;
+        this.FullTime=FullTime;
     }
 
-    public String getFormattedSubmissionTime() {
-        if (submissionTime == null) return "";
+    public String getFormattedSubmissionTime(){
+        if(submissionTime==null) return "";
         return submissionTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"));
     }
 
@@ -81,11 +80,11 @@ public class EmployeeForm {
         return department;
     }
     public void setDepartment(List<String> department){
-        this.department = department;
+        this.department=department;
     }
 
-    public String getDepartmentDisplay() {
-    if (department == null || department.isEmpty()) return "";
-    return String.join(", ", department);
-}
+    public String getDepartmentDisplay(){
+        if(department==null || department.isEmpty()) return "";
+        return String.join(", ", department);
+    }
 }

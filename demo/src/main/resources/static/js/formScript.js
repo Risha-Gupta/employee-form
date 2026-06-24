@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
-    const joiningDateInput = document.querySelector('input[type="date"]');
-    if (joiningDateInput) {
+document.addEventListener('DOMContentLoaded', function(){
+    const today=new Date().toISOString().split('T')[0];
+    const joiningDateInput=document.querySelector('input[type="date"]');
+    if(joiningDateInput){
         joiningDateInput.setAttribute('max', today);
     }
 });
@@ -17,13 +17,13 @@ function confirmClear(){
 function doSubmit(){
     closeModal("submitModal");
 
-    if (typeof $ !== 'undefined' && $("#department").data("select2")) {
-        var selected = $("#department").val();
+    if(typeof $ !== 'undefined' && $("#department").data("select2")){
+        var selected=$("#department").val();
         $("#department").select2("destroy");
         $("#department").empty();
-        if (selected && selected.length > 0) {
-            selected.forEach(function(v) {
-                var opt = new Option(v, v, true, true);
+        if(selected && selected.length > 0){
+            selected.forEach(function(v){
+                var opt=new Option(v, v, true, true);
                 $("#department").append(opt);
             });
         }
@@ -34,7 +34,7 @@ function doSubmit(){
 function doClear(){
     document.getElementById("employeeForm").reset();
 
-    if (typeof $ !== 'undefined' && typeof window.resetDepartmentDropdown === 'function') {
+    if(typeof $ !== 'undefined' && typeof window.resetDepartmentDropdown === 'function'){
         window.resetDepartmentDropdown();
     }
 
@@ -46,12 +46,12 @@ function closeModal(id){
 }
 
 function openBulkDeleteModal(){
-    var checked = document.querySelectorAll('.row-checkbox:checked');
-    if(checked.length === 0) return;
+    var checked=document.querySelectorAll('.row-checkbox:checked');
+    if(checked.length===0) return;
     document.getElementById("deleteModal").classList.add("active");
 }
 
-var confirmYesBtn = document.getElementById("confirmYes");
+var confirmYesBtn=document.getElementById("confirmYes");
 if(confirmYesBtn){
     confirmYesBtn.addEventListener("click", function(){
         closeModal("deleteModal");
@@ -59,54 +59,54 @@ if(confirmYesBtn){
     });
 }
 
-var selectAll = document.getElementById("selectAll");
+var selectAll=document.getElementById("selectAll");
 if(selectAll){
     selectAll.addEventListener("change", function(){
         document.querySelectorAll('.row-checkbox').forEach(function(cb){
-            cb.checked = selectAll.checked;
+            cb.checked=selectAll.checked;
         });
         syncDeleteButton();
     });
 }
 
 function syncDeleteButton(){
-    var checked = document.querySelectorAll('.row-checkbox:checked');
-    var btn = document.getElementById("bulkDeleteBtn");
-    if(btn) btn.disabled = (checked.length === 0);
+    var checked=document.querySelectorAll('.row-checkbox:checked');
+    var btn=document.getElementById("bulkDeleteBtn");
+    if(btn) btn.disabled=(checked.length===0);
 }
 
 document.querySelectorAll('.row-checkbox').forEach(function(cb){
     cb.addEventListener('change', function(){
         syncDeleteButton();
-        var total  = document.querySelectorAll('.row-checkbox').length;
-        var ticked = document.querySelectorAll('.row-checkbox:checked').length;
-        var sa = document.getElementById('selectAll');
-        if(sa) sa.checked = (total === ticked && total > 0);
+        var total=document.querySelectorAll('.row-checkbox').length;
+        var ticked=document.querySelectorAll('.row-checkbox:checked').length;
+        var sa=document.getElementById('selectAll');
+        if(sa) sa.checked=(total===ticked && total > 0);
     });
 });
 
 if(typeof $ !== 'undefined'){
-    $(document).ready(function () {
+    $(document).ready(function(){
 
-        var departments = [
-            "HR (Human Resources)", 
-            "IT (Information Technology)", 
+        var departments=[
+            "HR (Human Resources)",
+            "IT (Information Technology)",
             "Finance",
-            "Marketing", 
-            "Sales", 
-            "Design", 
+            "Marketing",
+            "Sales",
+            "Design",
             "Customer Support",
-            "Legal", 
-            "Research & Development", 
+            "Legal",
+            "Research & Development",
             "Product Management",
-            "Data Analytics", 
-            "Cybersecurity", 
+            "Data Analytics",
+            "Cybersecurity",
             "Administration"
         ];
 
-        var deptData = departments.map(function(d){ return { id: d, text: d }; });
+        var deptData=departments.map(function(d){ return {id:d, text:d}; });
 
-        function initSelect2() {
+        function initSelect2(){
             $("#department").select2({
                 placeholder: "Select Department",
                 allowClear: true,
@@ -114,20 +114,20 @@ if(typeof $ !== 'undefined'){
                 minimumInputLength: 1,
                 data: [],
                 ajax: {
-                    transport: function(params, success) {
-                        var term = (params.data.q || "").toLowerCase();
-                        var filtered = deptData.filter(function(item){
+                    transport: function(params, success){
+                        var term=(params.data.q || "").toLowerCase();
+                        var filtered=deptData.filter(function(item){
                             return item.text.toLowerCase().indexOf(term) !== -1;
                         });
-                        success({ results: filtered });
+                        success({results: filtered});
                     },
                     delay: 0
                 }
             });
         }
 
-        function resetDepartmentDropdown() {
-            if ($("#department").data("select2")) {
+        function resetDepartmentDropdown(){
+            if($("#department").data("select2")){
                 $("#department").select2("destroy");
             }
 
@@ -139,28 +139,28 @@ if(typeof $ !== 'undefined'){
             $("#deptError").hide();
         }
 
-        window.resetDepartmentDropdown = resetDepartmentDropdown;
+        window.resetDepartmentDropdown=resetDepartmentDropdown;
 
         if($("#department").length){
             initSelect2();
         }
 
-        $("#refreshDept").on("click", function () {
+        $("#refreshDept").on("click", function(){
             resetDepartmentDropdown();
         });
 
-        $("#employeeForm").on("submit", function (e) {
-            var val = $("#department").val();
+        $("#employeeForm").on("submit", function(e){
+            var val=$("#department").val();
 
-            if (!val || val.length === 0) {
+            if(!val || val.length===0){
                 e.preventDefault();
                 $("#deptError").text("Please select at least one department.");
                 $("#deptError").show();
                 return;
             }
 
-            var allPlaceholder = val.every(function (v) { return v === ""; });
-            if (allPlaceholder) {
+            var allPlaceholder=val.every(function(v){ return v===""; });
+            if(allPlaceholder){
                 e.preventDefault();
                 $("#deptError").text("Please select a real department, not just the placeholder.");
                 $("#deptError").show();
