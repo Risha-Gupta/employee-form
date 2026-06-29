@@ -12,19 +12,25 @@ public class EmployeeService{
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public void saveEmployee(EmployeeForm employee){
+    /*public void saveEmployee(EmployeeForm employee){
         employeeRepository.save(employee);
-    }
+    }*/
 
-    /*
+    
     public void saveEmployee(EmployeeForm employee){
-        Long reusedId = employeeRepository.findLowestUnusedId();
-        if (reusedId != null) {
-            employee.setId(reusedId);
-        }
-        employeeRepository.save(employee);
+    Long lowestUnused=employeeRepository.findLowestUnusedId();
+    if(lowestUnused != null){
+        employee.setId(lowestUnused);
+    } else {
+        Long maxId=employeeRepository.findAll()
+            .stream()
+            .mapToLong(EmployeeForm::getId)
+            .max()
+            .orElse(0L);
+        employee.setId(maxId + 1);
     }
-    */
+    employeeRepository.save(employee);
+}
 
     public List<EmployeeForm> getEmployees(){
         return employeeRepository.findAllByOrderBySubmissionTimeAsc();

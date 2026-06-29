@@ -48,7 +48,7 @@ public class EmployeeController{
             @RequestParam(value="q", required=false, defaultValue="") String query){
         List<String> allDepartments=Arrays.asList(
             "HR (Human Resources)", "IT (Information Technology)", "Finance",
-            "Marketing", "Sales", "Design", "Customer Support", "Research & Development", "Product Management", "Data Analytics", "Cybersecurity", "Administration"
+            "Marketing", "Sales", "Design","Customer Support", "Legal", "Research & Development", "Product Management", "Data Analytics", "Cybersecurity", "Administration"
         );
         if(query.isEmpty()) return allDepartments;
         String lowerQuery=query.toLowerCase();
