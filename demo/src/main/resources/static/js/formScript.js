@@ -106,19 +106,28 @@ if(typeof $ !== 'undefined'){
 
         var deptData=departments.map(function(d){ return {id:d, text:d}; });
 
-        function initSelect2(){
+        function getUnselected(){
+            var currentlySelected=$("#department").val() || [];
+            return deptData.filter(function(item){
+                return currentlySelected.indexOf(item.id) === -1;
+            });
+        }
+
+        function initSelect2(showAllOnOpen){
             $("#department").select2({
                 placeholder: "Select Department",
-                allowClear: true,
+                allowClear: false,
                 closeOnSelect: false,
-                minimumInputLength: 1,
-                data: [],
+                minimumInputLength: showAllOnOpen ? 0 : 1,
                 ajax: {
                     transport: function(params, success){
                         var term=(params.data.q || "").toLowerCase();
-                        var filtered=deptData.filter(function(item){
-                            return item.text.toLowerCase().indexOf(term) !== -1;
-                        });
+                        var available=getUnselected();
+                        var filtered=term.length === 0
+                            ? available
+                            : available.filter(function(item){
+                                return item.text.toLowerCase().indexOf(term) !== -1;
+                              });
                         success({results: filtered});
                     },
                     delay: 0
@@ -134,7 +143,7 @@ if(typeof $ !== 'undefined'){
             $("#department").empty();
             $("#department").val(null);
 
-            initSelect2();
+            initSelect2(true);
 
             $("#deptError").hide();
         }
@@ -142,7 +151,7 @@ if(typeof $ !== 'undefined'){
         window.resetDepartmentDropdown=resetDepartmentDropdown;
 
         if($("#department").length){
-            initSelect2();
+            initSelect2(false);
         }
 
         $("#refreshDept").on("click", function(){
