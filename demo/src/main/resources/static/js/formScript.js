@@ -127,11 +127,16 @@ if(typeof $ !== 'undefined'){
                             ? available
                             : available.filter(function(item){
                                 return item.text.toLowerCase().indexOf(term) !== -1;
-                              });
+                            });
                         success({results: filtered});
                     },
                     delay: 0
                 }
+            });
+
+            $("#department").on("select2:select", function(){
+                var searchField=$(".select2-container--open .select2-search__field");
+                searchField.val("").trigger("input");
             });
         }
 
