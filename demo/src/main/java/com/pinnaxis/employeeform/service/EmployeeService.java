@@ -13,18 +13,29 @@ public class EmployeeService{
     private EmployeeRepository employeeRepository;
 
     public void saveEmployee(EmployeeForm employee){
-        Long lowestUnused=employeeRepository.findLowestUnusedId();
-        if (lowestUnused!=null) {
-            employee.setId(lowestUnused);
-        } else {
-            Long maxId = employeeRepository.findAll()
-                .stream()
-                .mapToLong(EmployeeForm::getId)
-                .max()
-                .orElse(0L);
-            employee.setId(maxId+1);
+        if (employee.getId() == null){
+            employee.setId(findSmallestUnusedId());
         }
         employeeRepository.save(employee);
+    }
+
+    private Long findSmallestUnusedId(){
+        List<Long> ids = employeeRepository.findAllIdsInOrder();
+        long expected = 1L;
+
+        for (Long id : ids){
+            if (id == null){
+                continue;
+            }
+            if(id.equals(expected)){
+                expected++;
+            } 
+            else if(id > expected){
+                break;
+            }
+        }
+
+        return expected;
     }
 
     public List<EmployeeForm> getEmployees(){
