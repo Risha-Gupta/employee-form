@@ -34,12 +34,12 @@
                             <td th:text="${emp.employeeName}"></td>
                             <td th:text="${emp.gender}"></td>
                             <td th:text="${emp.departmentDisplay}"></td>
-                            <td th:text="${#temporals.format(emp.joiningDate, 'dd MMM yyyy')}"></td>
+                            <td th:text="${#temporals.format(emp.joiningDate, 'dd MMM yyyy').toUpperCase()}"></td>
                             <td>
                                 <span th:if="${emp.fullTime}" class="badge badge-yes">Yes</span>
                                 <span th:unless="${emp.fullTime}" class="badge badge-no">No</span>
                             </td>
-                            <td th:text="${emp.formattedSubmissionTime}"></td>
+                            <td th:text="${emp.formattedSubmissionTime.toUpperCase()}"></td>
                         </tr>
                     </tbody>
                 </table>
