@@ -17,7 +17,7 @@ function confirmClear(){
 function doSubmit(){
     closeModal("submitModal");
 
-    if(typeof $ !== 'undefined' && $("#department").data("select2")){
+    if(typeof $!=='undefined' && $("#department").data("select2")){
         var selected=$("#department").val();
         $("#department").select2("destroy");
         $("#department").empty();
@@ -34,7 +34,7 @@ function doSubmit(){
 function doClear(){
     document.getElementById("employeeForm").reset();
 
-    if(typeof $ !== 'undefined' && typeof window.resetDepartmentDropdown === 'function'){
+    if(typeof $!=='undefined' && typeof window.resetDepartmentDropdown === 'function'){
         window.resetDepartmentDropdown();
     }
 
@@ -109,7 +109,7 @@ if(typeof $ !== 'undefined'){
         function getUnselected(){
             var currentlySelected=$("#department").val() || [];
             return deptData.filter(function(item){
-                return currentlySelected.indexOf(item.id) === -1;
+                return currentlySelected.indexOf(item.id)=== -1;
             });
         }
 
@@ -126,7 +126,7 @@ if(typeof $ !== 'undefined'){
                         var filtered=term.length === 0
                             ? available
                             : available.filter(function(item){
-                                return item.text.toLowerCase().indexOf(term) !== -1;
+                                return item.text.toLowerCase().indexOf(term)!== -1;
                             });
                         success({results: filtered});
                     },
