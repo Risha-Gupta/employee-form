@@ -76,7 +76,7 @@ public class EmployeeForm{
 
     public String getFormattedSubmissionTime(){
         if(submissionTime==null) return "";
-        return submissionTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"));
+        return submissionTime.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss"));
     }
 
     public List<String> getDepartment(){
